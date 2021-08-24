@@ -1,28 +1,28 @@
 #include <stdio.h>
 
-void Encryption(char message[100],int i)                           // function to make encryption for the alphabets user enter
+void Encryption(char message[100],int i,int key)                           // function to make encryption for the alphabets user enter
 {           
 	for(i = 0; (i < 100 && message[i] != '\0'); i++)   	           //loop untill the word ends 
    	{	
    	    if((message[i] <= 122)&&(message[i] >= 97))                // condition work on small character
    	    {
 
-		  	if((message[i] + 7) <= 122)
-   				message[i] = message[i] + 7;                      // make char equal the seventh char after
+		  	if((message[i] +key) <= 122)
+   				message[i] = message[i] + key;                      // make char equal the seventh char after
 
 			else
-   				message[i] = message[i] + (7-26);                // statement to cotroll flow only between chars
+   				message[i] = message[i] + (key-26);                // statement to cotroll flow only between chars
 
 		}
 		
         if((message[i] <= 90)&&(message[i] >= 65))               // condition work on capital character by the same with small
         {
 		  	
-			if((message[i] + 7) <= 90)
-   				message[i] = message[i] +7;
+			if((message[i] + key) <= 90)
+   				message[i] = message[i] +key;
    				
 			else
-   				message[i] = message[i] + (7-26);
+   				message[i] = message[i] + (key-26);
    		
 		}
 	
@@ -31,7 +31,7 @@ void Encryption(char message[100],int i)                           // function t
 		printf("Encrypted message is: %s\n", message);
 }
 
-void Decryption(char message[100],int i)                        // function to make decryption for the alphabets user enter
+void Decryption(char message[100],int i,int key)                        // function to make decryption for the alphabets user enter
 {
 
 	for(i = 0; (i < 100 && message[i] != '\0'); i++)
@@ -40,11 +40,11 @@ void Decryption(char message[100],int i)                        // function to m
 		
 		if((message[i] <= 122)&&(message[i] >= 97))
 		{
-			if((message[i] - 7) >= 97)
-				message[i] = message[i] - 7;                 // make char equal the seventh char before
+			if((message[i] - key) >= 97)
+				message[i] = message[i] - key;                 // make char equal the seventh char before
 		
 			else
-				message[i] = message[i] - (7-26);   
+				message[i] = message[i] - (key-26);   
 		
 		}
 		
@@ -52,11 +52,11 @@ void Decryption(char message[100],int i)                        // function to m
 		
 		if((message[i] <= 90)&&(message[i] >= 65))
 		{
-			if((message[i] - 7) >= 65)			
-				message[i] = message[i] - 7;
+			if((message[i] - key) >= 65)			
+				message[i] = message[i] - key;
 			
 			else			
-				message[i] = message[i] - (7-26);
+				message[i] = message[i] - (key-26);
 			
 		}
 
@@ -67,7 +67,7 @@ void Decryption(char message[100],int i)                        // function to m
 
 int main()
 {
-	int i, num, key;                                                     //declaration for the variables we will use 
+	int i, num, key=7;                                                     //declaration for the variables we will use 
 	char message[100];
 
 	while (num!=3)
@@ -84,18 +84,17 @@ int main()
 		{ 
 			printf("Enter the message: "); 
 			scanf("%s", message);                                   // Taking word from user 
-			Encryption(message,i);                                 // calling function to encrypt the word 
+			Encryption(message,i,key);                                 // calling function to encrypt the word 
 		}
 		
 		else if(num==2)
 		{
 			printf("Enter the message: ");
 			scanf("%s", message);	                             // Taking word from user 
-			Decryption(message,i);                              // calling function to decrypt
+			Decryption(message,i,key);                              // calling function to decrypt
 		}
 
 	}
-	
 	
 	return 0;
 }
