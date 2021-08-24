@@ -70,7 +70,7 @@ int main()
 	int i, num, key=7;                                                     //declaration for the variables we will use 
 	char message[100];
 
-	while (num!=3)
+	while (num!=3)                                                         // loop stop only when the user choose exit "num = 3"
 	{
 		printf("\n");
 		printf("\nchoose from the following options:\n");             //menu where the user can select which functionality he wants to perform
